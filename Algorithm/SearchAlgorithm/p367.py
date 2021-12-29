@@ -6,7 +6,7 @@ def SearchNum(a, index, key):
     start = 0
     last = index - 1
     j = 0
-    while True:
+    while start <= last:
         midNum = (last + start) // 2
         if a[midNum] == key:
             i = 1
@@ -24,8 +24,6 @@ def SearchNum(a, index, key):
         elif a[midNum] > key:
             last = midNum - 1
             j += 1
-        if(start >= last):
-            break
     return -1
 
 index , key = map(int, sys.stdin.readline().split())
