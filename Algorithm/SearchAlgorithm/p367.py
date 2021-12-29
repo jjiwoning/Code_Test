@@ -12,9 +12,9 @@ def SearchNum(a, index, key):
             i = 1
             num = 1
             while i <= (index-1)//2*(j+1) :
-                if a[midNum + i] == key:
+                if (midNum + i < index)and(a[midNum + i] == key):
                     num += 1
-                if a[midNum - i] == key:
+                if (midNum - i > -1)and(a[midNum - i] == key):
                     num += 1
                 i+=1
             return num   
