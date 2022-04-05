@@ -17,4 +17,4 @@ def solution(n):
     answer = ''.join(answer)
     return answer
 
-print(solution(9))
+print(solution(12304))
