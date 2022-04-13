@@ -22,4 +22,13 @@ def solution(n):
     return len(answer) + 2
 
 # 위 문제는 좋지 않은 풀이인거 같다.
-# 에라토스테네스의 채를 사용한 풀이
+# 에라토스테네스의 체를 사용한 풀이
+
+def solution2(n):
+    num = set(range(2, n+1))
+
+    for i in range(2, n+1):
+        if i in num:
+            num -= set(range(2*i, n+1, i))
+            # 해당하는 수를 제외한 배수를 빼기 때문에 2*i 를 사용
+    return len(num)
