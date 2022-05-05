@@ -3,7 +3,6 @@ import heapq
 
 def solution(food_times, k):
     if sum(food_times) <= k:
-
         return -1
     
     q = []
@@ -17,11 +16,15 @@ def solution(food_times, k):
     length = len(food_times) # 남은 음식의 갯수
 
     # sum_value + (현재의 음식 시간 - 이전의 음식 시간) * 현재 음식 개수와 k를 비교
+    while sum_value + (q[0][0] - previous) * length <= k:
+        now = heapq.heappop(q)[0]
+        sum_value += (now - previous) * length
+        length -= 1 # 다 먹은 음식 리스트에서 삭제
+        previous = now # 이전 음식 시간 재설정
     
-
-
-    answer = 0
-    return answer
+    result = sorted(q, key = lambda x : x[1]) # 음식 번호 기준으로 정렬
+    return result[(k - sum_value) % length][1]
+    
 
 food = [3, 1, 2]
 k = 5
