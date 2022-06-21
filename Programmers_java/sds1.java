@@ -1,9 +1,6 @@
 package Programmers_java;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class sds1 {
 
@@ -14,33 +11,39 @@ public class sds1 {
         long [] answer = new long[cycle];
 
         for (int i = 0; i < cycle; i++) {
-            List<Integer> list = new ArrayList<>(); // ArrayList로 일차원으로 받기.
             answer[i] = 0; // 초기화
             int n = sc.nextInt(); // 세로
             int m = sc.nextInt(); // 가로
             int d = sc.nextInt(); // 일 수
+            Integer [] arr = new Integer[n*m];
             for(int j = 0; j < n*m; j ++){
-                list.add(sc.nextInt());
+                arr[j] = sc.nextInt();
             }
-            Collections.sort(list, Collections.reverseOrder());
+            Arrays.sort(arr ,Collections.reverseOrder());
+            int idx = 0;
             for(int k = 0; k < d; k++){
                 int dOil = sc.nextInt();
+                for(int b = 0; b < arr.length; b++){
+                    arr[b] += 1;
+                }
                 int total = 0;
+                
                 for(int a = 0; a < dOil; a++){
-                    total += (list.remove(a) - 1);
-                    list.add(1);
+                    total += arr[idx] - 1;
+                    arr[idx] = 1;
+                    idx++;
+                    if(idx >= arr.length){
+                        idx = 0;
+                    }
+                }
+                answer[i] += total * (k + 1);
                 }
                 
             }
 
-        }
-
         for (int i = 0; i < answer.length; i++) {
             System.out.println("#" + (i + 1) + " " + answer[i]);
         }
-
         sc.close();
     }
-    
-
 }
