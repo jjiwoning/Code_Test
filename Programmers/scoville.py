@@ -3,7 +3,7 @@
 import heapq
 
 def solution(scoville, K):
-    scoville.sort()
+    heapq.heapify(scoville)
     cnt = 0
 
     while scoville[0] < K:
@@ -18,3 +18,5 @@ def solution(scoville, K):
         cnt += 1
 
     return cnt
+
+print(solution([1, 10, 9, 3, 2, 12], 7))
