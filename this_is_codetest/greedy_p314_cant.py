@@ -15,3 +15,7 @@ for i in money:
     target += i
 
 print(target)
+
+def solution(n, ls):
+    ls.sort()
+    
