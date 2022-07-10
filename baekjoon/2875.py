@@ -2,14 +2,25 @@
 
 import sys
 
+def solution(n, m, k):
+    answer = 0
+
+    while True:
+        if n >= 2 and m >= 1 :
+            n -= 2
+            m -= 1
+            answer += 1
+        else:
+            if n + m >= k:
+                return answer
+            else:
+                while n + m < k:
+                    answer -= 1
+                    n += 2
+                    m += 1
+                return answer
+                
+
 n, m, k = map(int, sys.stdin.readline().split())
 
-result = 0
-
-while n >= 2 and m >= 1 and n+m >= k + 3:
-    # 여학생은 2명 이상, 남학생은 1명 이상, 여학생 + 남학생의 수가 k보다 3명 많아야 팀 결성 가능
-    n -= 2
-    m -= 1
-    result += 1
-
-print(result)
+print(solution(n, m, k))
