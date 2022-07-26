@@ -12,7 +12,7 @@ cnt = 0
 
 for i in people:
     cnt += 1
-    if i >= cnt:
+    if i <= cnt:
         answer += 1
         cnt = 0
 
