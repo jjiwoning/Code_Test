@@ -34,6 +34,8 @@ public class Main {
                 }
             }
         }
+
+        //정답 출력
         System.out.println(dp[n - 1][n - 1]);
     }
 }
