@@ -25,6 +25,7 @@ public class Solution {
                         dp[i][j] += dp[i][j - 1];
                     }
                     if (dp[i][j] > 1000000007) {
+                        // 안해주면 오류남
                         dp[i][j] %= 1000000007;
                     }
                 }
