@@ -27,9 +27,9 @@ public class Solution {
         }
 
         dfs(arr, startX, (startX+endX) / 2, startY, (startY+endY) / 2);
-        dfs(arr, startX, (startX+endX) / 2, (startY+endY) / 2 + 1, endY);
-        dfs(arr, (startX+endX) / 2 + 1, endX, startY, (startY+endY) / 2);
-        dfs(arr, (startX+endX) / 2 + 1, endX, (startY+endY) / 2 + 1, endY);
+        dfs(arr, startX, (startX+endX) / 2, (startY+endY) / 2, endY);
+        dfs(arr, (startX+endX) / 2, endX, startY, (startY+endY) / 2);
+        dfs(arr, (startX+endX) / 2, endX, (startY+endY) / 2, endY);
     }
 
     private boolean isSame(int[][] arr, int startX, int endX, int startY, int endY) {
