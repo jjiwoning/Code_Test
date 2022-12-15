@@ -33,12 +33,11 @@ public class Solution {
                 if (checkBracket(u.toString())) {
                     u.append(convert(v.toString()));
                 } else {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("(");
-                    sb.append(convert(v.toString()));
-                    sb.append(")");
-                    sb.append(reverse(u.toString()));
-                    return sb.toString();
+                    String sb = "(" +
+                            convert(v.toString()) +
+                            ")" +
+                            reverse(u.toString());
+                    return sb;
                 }
                 break;
             }
