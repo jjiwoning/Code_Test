@@ -14,9 +14,9 @@ public class Main {
 
         int[][] dp = new int[char1Length + 1][char2Length + 1];
 
-        for (int i = 1; i < char1Length; i++) {
-            for (int j = 1; j < char2Length; j++) {
-                if (chars1[i] == chars2[i]) {
+        for (int i = 1; i <= char1Length; i++) {
+            for (int j = 1; j <= char2Length; j++) {
+                if (chars1[i - 1] == chars2[j - 1]) {
                     dp[i][j] = dp[i - 1][j - 1] + 1;
                     continue;
                 }
