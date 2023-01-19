@@ -10,8 +10,7 @@ public class Solution {
     int[][] map;
 
     public int solution(int[][] rectangle, int characterX, int characterY, int itemX, int itemY) {
-        int answer = 0;
-        map = new int[102][102];
+        map = new int[102][102]; // 배열 2배로 만들기 -> 도형에서 5와 6이 붙어있지 않음 -> 2배를 해서 둘이 멀어지게 해야됨
         for (int[] ints : rectangle) { // 처음에 직사각형 전체 채우기
             int sx = ints[0] * 2;
             int sy = ints[1] * 2;
@@ -38,7 +37,7 @@ public class Solution {
 
         bfs(characterX * 2, characterY * 2, itemX * 2, itemY * 2);
 
-        return map[itemX * 2][itemY * 2] / 2;
+        return map[itemX * 2][itemY * 2] / 2; // 지금까지 이동한 거리에서 2를 나눠줘야 원하는 값이 됨
     }
 
     private void bfs(int x, int y, int endX, int endY) {
