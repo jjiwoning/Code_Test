@@ -13,18 +13,18 @@ public class Main {
 
         s = sc.next();
 
-        Stack<Integer> stack = new Stack<>();
-        pairs = new ArrayList<>();
-        visited = new boolean[s.length()];
-        set = new TreeSet<>();
+        Stack<Integer> stack = new Stack<>(); // '(' 일때 push ')' 일때 pop
+        pairs = new ArrayList<>(); // 괄호 쌍을 저장할 리스트
+        visited = new boolean[s.length()]; // 괄호 쌍을 방문했는지 확인하는 용도의 배열
+        set = new TreeSet<>(); // 정답을 저장할 Set -> TreeSet은 정렬이 되어 있음
 
         for (int i = 0; i < s.length(); i++) {
             if ((s.charAt(i) + "").equals("(")) {
-                stack.add(i);
+                stack.add(i); // 스택에는 index 값을 넣어준다.
                 continue;
             }
             if ((s.charAt(i) + "").equals(")")) {
-                Integer pop = stack.pop();
+                Integer pop = stack.pop(); // 스택을 pop하고 pairs 리스트에 값을 넣어준다.
                 pairs.add(new Pair(pop, i));
             }
         }
@@ -39,7 +39,7 @@ public class Main {
 
     }
 
-    private static void dfs(int level) {
+    private static void dfs(int level) { // 조합으로 해결 -> 1, 3과 3, 1이 같은 결과를 내므로
         if (level == pairs.size()) {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < s.length(); i++) {
@@ -61,9 +61,9 @@ public class Main {
         dfs(level + 1);
     }
 
-    static class Pair {
-        int index1;
-        int index2;
+    static class Pair { // 괄호 위치를 담아둘 클래스 선언
+        int index1; // '(' index
+        int index2; // ')' index
 
         public Pair(int index1, int index2) {
             this.index1 = index1;
