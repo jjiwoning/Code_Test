@@ -51,12 +51,13 @@ public class Main {
             return;
         }
 
-        Pair pair = pairs.get(level);
-        visited[pair.index1] = true;
+        Pair pair = pairs.get(level); // 체크할 괄호 쌍
+
+        visited[pair.index1] = true; // 제거 대상
         visited[pair.index2] = true;
         dfs(level + 1);
 
-        visited[pair.index1] = false;
+        visited[pair.index1] = false; // 안넣을 대상
         visited[pair.index2] = false;
         dfs(level + 1);
     }

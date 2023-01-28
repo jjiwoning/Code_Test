@@ -6,19 +6,22 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
 
         for (int i = 0; i < n; i++) {
+
             Deque<Integer> deque = new LinkedList<>();
             String command = sc.next();
             int index = sc.nextInt();
             String input = sc.next();
             String subInput = input.substring(1, input.length() - 1);
             String[] inputs = subInput.split(",");
+
             boolean checked = false;
             boolean reverse = false;
-            // 4 -> 9, 1 -> 3, 6 -> 13
+
             for (String s : inputs) {
                 if (s.equals("")) {
                     break;
@@ -26,6 +29,7 @@ public class Main {
                 int num = Integer.parseInt(s);
                 deque.add(num);
             }
+
             for (int j = 0; j < command.length(); j++) {
                 char c = command.charAt(j);
                 if (c == 'R') {
@@ -43,6 +47,7 @@ public class Main {
                     }
                 }
             }
+
             StringBuilder sb = new StringBuilder();
             sb.append("[");
             if (!checked && !reverse) {
@@ -61,6 +66,7 @@ public class Main {
                 }
             }
             sb.append("]");
+
             if (!checked) {
                 System.out.println(sb.toString());
             }
