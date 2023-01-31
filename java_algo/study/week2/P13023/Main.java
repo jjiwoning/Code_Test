@@ -15,7 +15,7 @@ public class Main {
 
         int n = sc.nextInt();
         int m = sc.nextInt();
-        friends = new ArrayList[n]; // 배열 말고 연결 리스트를 만들어서 풀어주기
+        friends = new ArrayList[n]; // 배열 말고 인접 리스트를 만들어서 풀어주기
 
         for (int i = 0; i < n; i++) {
             friends[i] = new ArrayList<>(); // 내부 배열 List 초기화
