@@ -37,6 +37,10 @@ public class Main {
 
         bfs();
 
+        System.out.println(getAnswer());
+    }
+
+    private static int getAnswer() {
         int answer = 0;
         boolean check = true;
 
@@ -44,7 +48,7 @@ public class Main {
             for (int i : ints) {
                 if (i == 0) { // 박스에 0이 있는 경우 -> 모든 토마토가 익지 않은 상태 -> 답이 -1이 나와야 한다.
                     answer = 0;
-                    check = false;
+                    check = false; // check 필드에 false를 주어 for문 탈출할 수 있게 세팅
                     break;
                 }
                 answer = Math.max(answer, i); // 토마토가 익는데 며칠이 걸리는지 구하려면 최대값을 구해야 된다.
@@ -53,8 +57,7 @@ public class Main {
                 break;
             }
         }
-
-        System.out.println(--answer); // bfs에서 값을 더해주는 과정을 0에서 시작하지 않고 1에서 시작했기 때문에 값에서 1을 빼줘야 한다.
+        return --answer; // bfs에서 값을 더해주는 과정을 0에서 시작하지 않고 1에서 시작했기 때문에 값에서 1을 빼줘야 한다.
     }
 
     private static void bfs() {
@@ -62,12 +65,15 @@ public class Main {
             int[] index = queue.poll(); // 큐의 맨 앞의 값을 꺼낸다.
             int x = index[0];
             int y = index[1];
+
             for (int i = 0; i < 4; i++) { // 상하좌우 탐색
                 int mx = x + dx[i];
                 int my = y + dy[i];
+
                 if (mx < 0 || mx >= n || my < 0 || my >= m) { // 박스 범위에 벗어나는 경우 탈출
                     continue;
                 }
+
                 if (box[mx][my] == 0) { // 이 경우 토마토가 익어야 한다.
                     queue.add(new int[]{mx, my});
                     box[mx][my] = box[x][y] + 1; // 이전 토마토에서 1 더한 값을 넣어줘야 한다.
