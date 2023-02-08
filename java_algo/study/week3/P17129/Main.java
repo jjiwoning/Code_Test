@@ -31,12 +31,12 @@ public class Main {
                 int input = s1.charAt(j) - '0';
                 if (input == 2) {
                     map[i][j] = 0;
-                    queue.add(new int[]{i, j});
+                    queue.add(new int[]{i, j}); // 시작점을 큐에 넣어준다.
                     continue;
                 }
 
                 if (input >= 3) {
-                    map[i][j] = input * -1;
+                    map[i][j] = input * -1; // 음수로 값을 넣어줘서 map 배열에 visited 설정 및 얼마나 갔는지 설정할 수 있게하기
                     continue;
                 }
 
@@ -45,7 +45,7 @@ public class Main {
                     continue;
                 }
 
-                map[i][j] = input;
+                map[i][j] = input; // 0
 
             }
         }
@@ -76,11 +76,11 @@ public class Main {
                 }
 
                 if (map[mx][my] <= -3) {
-                    return map[now[0]][now[1]] + 1;
+                    return map[now[0]][now[1]] + 1; // 3 4 5 에 접근하는 순간이 답이다.
                 }
 
                 if (map[mx][my] == 0) {
-                    map[mx][my] = map[now[0]][now[1]] + 1;
+                    map[mx][my] = map[now[0]][now[1]] + 1; // 0이면 방문 x -> 이동
                     queue.add(new int[]{mx, my});
                 }
             }
