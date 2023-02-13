@@ -1,4 +1,4 @@
-package baekjoon_java.P2630;
+package study.week4.P2630;
 
 import java.io.BufferedReader;
 import java.io.IOException;
