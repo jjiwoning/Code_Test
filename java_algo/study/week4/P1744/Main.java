@@ -27,24 +27,24 @@ public class Main {
             numList.add(number);
         }
 
-        numList.sort((o1, o2) -> o2 - o1);
+        numList.sort((o1, o2) -> o2 - o1); // 로직 1
 
         int answer = 0;
 
         while (!numList.isEmpty()) {
             Integer num = numList.pollFirst();
 
-            if (num == 0) {
+            if (num == 0) { // 로직 2
                 continue;
             }
 
-            if (num < 0 && minusCount % 2 == 1 && zeroCount > 0) {
+            if (num < 0 && minusCount % 2 == 1 && zeroCount > 0) { // 로직 3
                 zeroCount = 0;
                 minusCount--;
                 continue;
             }
 
-            if (num < 0 && minusCount % 2 == 1) {
+            if (num < 0 && minusCount % 2 == 1) { // 로직 4
                 answer += num;
                 minusCount--;
                 continue;
