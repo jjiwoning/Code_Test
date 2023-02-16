@@ -39,6 +39,7 @@ public class Main {
             }
 
             if (num < 0 && minusCount % 2 == 1 && zeroCount > 0) { // 로직 3
+                // 상쇄 시켜야 되니까 그냥 넘어감
                 zeroCount = 0;
                 minusCount--;
                 continue;
