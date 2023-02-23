@@ -26,10 +26,8 @@ public class Main {
         for (int i = 0; i < n; i++) {
             int nowMemory = memory[i];
             int nowCost = cost[i];
-            for (int j = 0; j < maxCost - nowCost; j++) {
-                if (dp[j] != 0) {
-                    dp[j + nowCost] = Math.max(dp[j + nowCost], dp[j] + nowMemory);
-                }
+            for (int j = maxCost; j >= nowCost; j--) {
+                dp[j] = Math.max(dp[j - nowCost] + nowMemory, dp[j]);
             }
             dp[nowCost] = Math.max(dp[nowCost], nowMemory);
         }
