@@ -76,7 +76,6 @@ public class Main {
     private static void getSand(int x, int y, int direction) {
         int nowSand = mapInfo[x][y];
         int sandMapOut = 0;
-        int moveSand = 0;
 
         // 7%
         int sand7 = (int) (nowSand * 0.07);
@@ -103,12 +102,12 @@ public class Main {
             if (i == 8) {
                 sand = sand5;
             }
-            if (!checkAreaAndMoveSand(x + dsx[direction][i], y + dsy[direction][i], sand)) {
+            if (checkAreaAndMoveSand(x + dsx[direction][i], y + dsy[direction][i], sand)) {
                 sandMapOut += sand;
             }
         }
 
-        if (!checkAreaAndMoveSand(x + dx[direction], y + dy[direction], sandAlpha)) {
+        if (checkAreaAndMoveSand(x + dx[direction], y + dy[direction], sandAlpha)) {
             sandMapOut += sandAlpha;
         }
 
@@ -117,11 +116,11 @@ public class Main {
 
     private static boolean checkAreaAndMoveSand(int x, int y, int sand) {
         if (x < 0 || x >= n || y < 0 || y >= n) {
-            return false;
+            return true;
         }
 
         mapInfo[x][y] += sand;
 
-        return true;
+        return false;
     }
 }
