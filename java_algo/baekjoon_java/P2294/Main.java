@@ -24,9 +24,10 @@ public class Main {
 
         if (arr[wanted] == 150000) {
             System.out.println(-1);
-        } else {
-            System.out.println(arr[wanted]);
+            return;
         }
+        System.out.println(arr[wanted]);
+
     }
     
 }

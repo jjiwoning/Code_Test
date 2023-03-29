@@ -121,20 +121,6 @@ public class Solution {
         cell[parentVal / 50][parentVal % 50] = change;
     }
 
-    private void updateSameCell(int x, int y, String change) {
-        int value = x * 50 + y;
-        for (int i = 0; i < 50; i++) {
-            for (int j = 0; j < 50; j++) {
-                if (i == x && j == y) {
-                    continue;
-                }
-                if (isSameParent(value, i * 50 + j)) {
-                    cell[i][j] = change;
-                }
-            }
-        }
-    }
-
     private int find(int value) {
         int x = value / 50;
         int y = value % 50;
@@ -157,6 +143,7 @@ public class Solution {
             return;
         }
         parent[value2 / 50][value2 % 50] = value1;
+        cell[value2 / 50][value2 % 50] = null;
     }
 
     private boolean isSameParent(int value1, int value2) {
