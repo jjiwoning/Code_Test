@@ -5,6 +5,7 @@ package study.week12.kakao_150367;
  */
 public class Solution {
     public int[] solution(long[] numbers) {
+
         int[] answer = new int[numbers.length];
 
         for (int i = 0; i < numbers.length; i++) {

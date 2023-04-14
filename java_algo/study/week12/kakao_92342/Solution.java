@@ -7,21 +7,21 @@ public class Solution {
 
     int score;
     int[] answer;
-    int[] apeachScore;
+    int[] apeachInfo;
 
     public int[] solution(int n, int[] info) {
         score = 0;
         answer = new int[]{-1};
-        apeachScore = info;
+        apeachInfo = info;
 
         dfs(n,10, new int[11]);
 
         return answer;
     }
 
-    private void dfs(int arrowCount, int index, int[] lionScore) {
+    private void dfs(int arrowCount, int index, int[] lionInfo) {
         if (arrowCount == 0) {
-            calScore(lionScore);
+            calScore(lionInfo);
             return;
         }
 
@@ -30,26 +30,26 @@ public class Solution {
         }
 
         for (int i = arrowCount; i >= 0; i--) {
-            lionScore[index] = i;
-            dfs(arrowCount - i, index - 1, lionScore);
-            lionScore[index] = 0;
+            lionInfo[index] = i;
+            dfs(arrowCount - i, index - 1, lionInfo);
+            lionInfo[index] = 0;
         }
     }
 
-    private void calScore(int[] lionScore) {
+    private void calScore(int[] lionInfo) {
 
         int lion = 0;
         int appeach = 0;
 
         for (int i = 0; i < 11; i++) {
-            if (apeachScore[i] == 0 && lionScore[i] == 0) {
+            if (apeachInfo[i] == 0 && lionInfo[i] == 0) {
                 continue;
             }
-            if (apeachScore[i] >= lionScore[i]) {
+            if (apeachInfo[i] >= lionInfo[i]) {
                 appeach += 10 - i;
                 continue;
             }
-            if (lionScore[i] > apeachScore[i]) {
+            if (lionInfo[i] > apeachInfo[i]) {
                 lion += 10 - i;
             }
         }
@@ -57,7 +57,7 @@ public class Solution {
         if (lion > appeach) { // 라이언이 이김
             if (lion - appeach > score) {
                 score = lion - appeach;
-                answer = lionScore.clone();
+                answer = lionInfo.clone();
                 return;
             }
         }
