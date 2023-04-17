@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Main {
 
@@ -58,13 +57,15 @@ public class Main {
                     answer++;
                 }
             }
+            List<Person> removeList = new ArrayList<>();
             for (Person person : personList) {
                 if (person.x == exit.x && person.y == exit.y) {
-                    personList.remove(person);
+                    removeList.add(person);
                     continue;
                 }
                 maze[person.x][person.y] = -2;
             }
+            personList.removeAll(removeList);
             rotate(getRotateArea());
         }
 
@@ -107,6 +108,8 @@ public class Main {
                 rotateMap[i][j] = maze[i][j];
             }
         }
+        List<Person> editPersonList = new ArrayList<>();
+        List<int[]> editPersonIndex = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -117,11 +120,12 @@ public class Main {
                     rotateMap[startX + j][startY + size - i - 1] = -1;
                     continue;
                 }
+
                 if (num == -3) {
                     for (Person person : personList) {
                         if (person.x == startX + i && person.y == startY + j) {
-                            person.x = startX + j;
-                            person.y = startY + size - i - 1;
+                            editPersonList.add(person);
+                            editPersonIndex.add(new int[]{startX + j, startY + size - i - 1});
                             rotateMap[startX + j][startY + size - i - 1] = -2;
                         }
                     }
@@ -131,6 +135,13 @@ public class Main {
 
             }
         }
+
+        for (int i = 0; i < editPersonList.size(); i++) {
+            Person person = editPersonList.get(i);
+            person.x = editPersonIndex.get(i)[0];
+            person.y = editPersonIndex.get(i)[1];
+        }
+
         maze = rotateMap;
     }
 }
