@@ -18,50 +18,37 @@ public class Main {
         Arrays.sort(arr);
 
         int start = 0;
-        int end = n - 1;
 
-        // 투 포인터 + 이진 탐색
-        while (start < end) {
-            long sum = arr[start] + arr[end];
-            int binarySearchStart = start;
-            int binarySearchEnd = end;
+        while (start < n - 1) {
+            int mid = start + 1;
+            int end = n - 1;
+            long startValue = arr[start];
+            while (mid < end) {
 
-            while (binarySearchStart < binarySearchEnd) {
-                int mid = (binarySearchStart + binarySearchEnd) / 2;
+                long now = startValue + arr[mid] + arr[end];
 
-                if (start == mid || end == mid) {
-                    break;
-                }
-
-                if (Math.abs(sum + arr[mid]) < targetValue) {
-                    targetValue = Math.abs(sum + arr[mid]);
+                if (Math.abs(now) < targetValue) {
+                    targetValue = Math.abs(now);
                     answer[0] = arr[start];
                     answer[1] = arr[mid];
                     answer[2] = arr[end];
                 }
 
-                if (targetValue == 0) {
+                if (now == 0) {
                     System.out.println(answer[0] + " " + answer[1] + " " + answer[2]);
                     return;
                 }
 
-                if (sum + arr[mid] > 0) {
-                    binarySearchEnd = mid - 1;
+                if (now > 0) {
+                    end--;
                 }
 
-                if (sum + arr[mid] < 0) {
-                    binarySearchStart = mid + 1;
+                if (now < 0) {
+                    mid++;
                 }
-
             }
 
-            if (sum < 0) {
-                start++;
-            }
-
-            if (sum > 0) {
-                end--;
-            }
+            start++;
         }
 
         System.out.println(answer[0] + " " + answer[1] + " " + answer[2]);
