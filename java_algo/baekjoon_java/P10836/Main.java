@@ -14,7 +14,7 @@ public class Main {
 
         Bees bees = new Bees(size);
 
-        bees.addPrefixSum(makePrefixSum(br, size, day));
+        bees.add(makePrefixSum(br, size, day));
 
         System.out.println(bees);
     }
@@ -56,9 +56,9 @@ class Bees {
         this.bees = new int[size][size];
     }
 
-    public void addPrefixSum(int[] prefixSum) {
-        int startY = 0;
+    public void add(int[] prefixSum) {
         int startX = this.size - 1;
+        int startY = 0;
 
         for (int sum : prefixSum) {
             this.bees[startX][startY] += sum;
