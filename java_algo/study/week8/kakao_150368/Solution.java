@@ -5,9 +5,9 @@ package study.week8.kakao_150368;
  */
 public class Solution {
 
-    int[] answer;
-    int[] discounts;
-    int[] percent = new int[]{10, 20, 30, 40};
+    private int[] answer;
+    private int[] discounts;
+    private final int[] percent = new int[]{10, 20, 30, 40};
 
     public int[] solution(int[][] users, int[] emoticons) {
         answer = new int[]{0, 0};

@@ -12,23 +12,24 @@ public class Main {
         final int l = Integer.parseInt(br.readLine());
         int[] river = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 
-        Info info = findMaxScore(l, river);
-        info.printInfo();
+        findMaxScore(l, river).printInfo();
     }
 
     private static Info findMaxScore(final int l, final int[] river) {
-        int interval = 1;
         int minInterval = -1;
         long maxScore = -1;
-        while (interval <= l) {
+
+        for (int interval = 1; interval <= l; interval++) {
             long score = findScore(l, river, interval);
 
             if (score > maxScore) {
                 maxScore = score;
                 minInterval = interval;
             }
+            
             interval++;
         }
+
 
         return new Info(minInterval, maxScore);
     }
