@@ -56,15 +56,15 @@ public class Main {
         answer[n] = 1;
 
         while (!queue.isEmpty()) {
-            Node now = queue.poll();
-            List<Node> nodes = graph[now.start];
+            Node nowNode = queue.poll();
+            List<Node> nodes = graph[nowNode.start];
 
-            for (Node node : nodes) {
-                edgeCount[node.start]--;
-                answer[node.start] += answer[now.start] * node.cost;
+            for (Node nextNode : nodes) {
+                edgeCount[nextNode.start]--;
+                answer[nextNode.start] += answer[nowNode.start] * nextNode.cost;
 
-                if (edgeCount[node.start] == 0) {
-                    queue.add(new Node(node.start, answer[node.start]));
+                if (edgeCount[nextNode.start] == 0) {
+                    queue.add(new Node(nextNode.start, answer[nextNode.start]));
                 }
             }
         }

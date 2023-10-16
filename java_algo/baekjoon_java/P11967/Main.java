@@ -17,6 +17,7 @@ public class Main {
 
     private static int checkX;
     private static int checkY;
+    private static int answer;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -46,9 +47,10 @@ public class Main {
             switches.get(node).add(new Node(x2, y2));
         }
 
+        answer = 0;
+
         bfs();
 
-        int answer = 0;
 
         for (boolean[] turnOns : isTurnOn) {
             for (boolean turnOn : turnOns) {

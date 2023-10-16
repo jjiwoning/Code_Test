@@ -36,7 +36,6 @@ public class Main {
             woods[i] = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
         }
 
-
         dfs(0, 0, 0);
 
         System.out.println(answer);
