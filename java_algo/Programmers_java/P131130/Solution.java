@@ -1,5 +1,7 @@
 package Programmers_java.P131130;
 
+import java.util.Arrays;
+
 /**
  * 프로그래머스 - 혼자 놀기의 달인
  */
@@ -7,7 +9,6 @@ public class Solution {
     private int parent[];
 
     public int solution(int[] cards) {
-        int answer = 0;
         parent = new int[cards.length + 1];
 
         for (int i = 1; i < cards.length + 1; i++) {
@@ -18,20 +19,20 @@ public class Solution {
             union(i + 1, cards[i]);
         }
 
-        int[] answerArr = new int[cards.length + 1];
+        Integer[] answerArr = new Integer[cards.length + 1];
+
+        for (int i = 0; i < cards.length + 1; i++) {
+            answerArr[i] = 0;
+        }
 
         for (int i = 1; i < cards.length + 1; i++) {
             find(i);
             answerArr[parent[i]]++;
         }
 
-        for (int i = 1; i < cards.length; i++) {
-            for (int j = i + 1; j < cards.length + 1; j++) {
-                answer = Math.max(answer, answerArr[i] * answerArr[j]);
-            }
-        }
+        Arrays.sort(answerArr, (o1, o2) -> o2 - o1);
 
-        return answer;
+        return answerArr[0] * answerArr[1];
     }
 
     private int find(int x) {
