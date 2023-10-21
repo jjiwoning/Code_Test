@@ -38,10 +38,10 @@ public class FloydWarshallSample {
             graph[s][e] = c;
         }
 
-        for (int i = 1; i < n + 1; i++) {
-            for (int j = 1; j < n + 1; j++) {
-                for (int k = 1; k < n + 1; k++) {
-                    graph[j][k] = Math.min(graph[j][k], graph[j][i] + graph[i][k]);
+        for (int mid = 1; mid < n + 1; mid++) {
+            for (int start = 1; start < n + 1; start++) {
+                for (int end = 1; end < n + 1; end++) {
+                    graph[start][end] = Math.min(graph[start][end], graph[start][mid] + graph[mid][end]);
                 }
             }
         }
