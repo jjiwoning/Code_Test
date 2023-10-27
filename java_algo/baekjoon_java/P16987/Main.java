@@ -9,14 +9,13 @@ public class Main {
 
     private static int n;
     private static int answer;
-    private static Egg[] eggs;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         n = Integer.parseInt(br.readLine());
 
-        eggs = new Egg[n];
+        Egg[] eggs = new Egg[n];
         answer = 0;
 
         for (int i = 0; i < n; i++) {
@@ -24,21 +23,21 @@ public class Main {
             eggs[i] = new Egg(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
         }
 
-        dfs(0);
+        dfs(0, eggs);
 
         System.out.println(answer);
     }
 
-    private static void dfs(int depth) {
+    private static void dfs(int depth, Egg[] eggs) {
         if (depth == n) {
-            isMaximumBrokenEgg();
+            isMaximumBrokenEgg(eggs);
             return;
         }
 
         Egg targetEgg = eggs[depth];
 
         if (targetEgg.isBroken()) {
-            dfs(depth + 1);
+            dfs(depth + 1, eggs);
             return;
         }
 
@@ -47,7 +46,7 @@ public class Main {
                 continue;
             }
             boolean check = targetEgg.breakEgg(eggs[i]);
-            dfs(depth + 1);
+            dfs(depth + 1, eggs);
             if (check) {
                 targetEgg.rollbackEgg(eggs[i]);
             }
@@ -55,7 +54,7 @@ public class Main {
 
     }
 
-    private static void isMaximumBrokenEgg() {
+    private static void isMaximumBrokenEgg(Egg[] eggs) {
         int count = 0;
         for (Egg egg : eggs) {
             if (egg.isBroken()) {
