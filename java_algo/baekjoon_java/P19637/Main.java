@@ -31,24 +31,26 @@ public class Main {
 
         for (int i = 0; i < m; i++) {
             int number = Integer.parseInt(br.readLine());
-
-            int start = 0;
-            int end = numbers.size();
-
-            while (start < end) {
-                int mid = (start + end) / 2;
-
-                if (numbers.get(mid) >= number) {
-                    end = mid;
-                }
-                if (numbers.get(mid) < number) {
-                    start = mid + 1;
-                }
-            }
-
-            answer.append(map.get(numbers.get(end))).append("\n");
+            answer.append(map.get(numbers.get(binarySearch(numbers, number)))).append("\n");
         }
 
         System.out.println(answer);
+    }
+
+    private static int binarySearch(List<Integer> numbers, int number) {
+        int start = 0;
+        int end = numbers.size();
+
+        while (start < end) {
+            int mid = (start + end) / 2;
+
+            if (numbers.get(mid) >= number) {
+                end = mid;
+            }
+            if (numbers.get(mid) < number) {
+                start = mid + 1;
+            }
+        }
+        return end;
     }
 }
