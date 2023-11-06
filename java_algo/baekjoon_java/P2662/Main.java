@@ -54,4 +54,5 @@ public class Main {
 			System.out.print(count[m][n][i] + " ");
 		}
 	}
+
 }
