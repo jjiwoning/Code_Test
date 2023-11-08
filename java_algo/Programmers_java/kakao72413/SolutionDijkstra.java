@@ -7,7 +7,7 @@ import java.util.PriorityQueue;
 
 public class SolutionDijkstra {
 
-	private static final int MAX_VALUE = 77777777;
+	private static final int MAX_VALUE = 100000 * 200 + 1;
 
 	private int n;
 	private List<List<Node>> graph;
