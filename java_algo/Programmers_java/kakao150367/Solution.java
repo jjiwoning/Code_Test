@@ -37,6 +37,7 @@ public class Solution {
 
 		int nextIndex = (int) Math.pow(2, depth);
 
+		// 1번 케이스: 현재 타겟이 0일 때
 		if (binary.charAt(index) == '0') {
 			if (binary.charAt(index - nextIndex) == '1' ||
 				binary.charAt(index + nextIndex) == '1'
