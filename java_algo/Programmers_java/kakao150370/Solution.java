@@ -17,7 +17,7 @@ public class Solution {
 	private static final int MONTH = 12;
 	private static final int DAY = 28; // 모든 달은 28일까지 있다고 가정합니다.
 
-	public int[] solution(String today, String[] terms, String[] privacies) {
+	public List<Integer> solution(String today, String[] terms, String[] privacies) {
 		int parsingDayToday = parseDate(today);
 		Map<String, Integer> termMap = makeTermMap(terms);
 
@@ -37,7 +37,7 @@ public class Solution {
 		return termMap;
 	}
 
-	private int[] isExpiredPrivacies(int parsingDayToday, Map<String, Integer> termMap, String[] privacies) {
+	private List<Integer> isExpiredPrivacies(int parsingDayToday, Map<String, Integer> termMap, String[] privacies) {
 		List<Integer> result = new ArrayList<>();
 
 		for (int i = 0; i < privacies.length; i++) {
@@ -50,13 +50,7 @@ public class Solution {
 			}
 		}
 
-		int[] answer = new int[result.size()];
-
-		for (int i = 0; i < answer.length; i++) {
-			answer[i] = result.get(i);
-		}
-
-		return answer;
+		return result;
 	}
 
 	/**
