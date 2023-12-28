@@ -18,9 +18,12 @@ public class Solution {
             int startTime = getSecTime(splitStartAndEnd[0]);
             int endTime = getSecTime(splitStartAndEnd[1]);
 
-            for (int i = startTime; i < endTime; i++) {
-                sum[i]++;
-            }
+            sum[startTime]++;
+            sum[endTime]--;
+        }
+
+        for (int i = 0; i < sum.length - 1; i++) {
+            sum[i + 1] += sum[i];
         }
 
         long maxVal = 0;
@@ -45,18 +48,39 @@ public class Solution {
         int hour = Integer.parseInt(timeToSecArray[0]) * 60 * 60;
         int min = Integer.parseInt(timeToSecArray[1]) * 60;
         int sec = Integer.parseInt(timeToSecArray[2]);
-        int totalTime = hour + min + sec;
-        return totalTime;
+        return hour + min + sec;
     }
 
     private String getStringTime(long secTime) {
-        String hour, min, sec;
-        hour = (secTime/3600)>9? (secTime/3600)+"":"0"+secTime/3600;
-        secTime%=3600;
-        min = (secTime/60)>9? (secTime/60)+"":"0"+secTime/60;
-        secTime%=60;
-        sec = secTime>9? secTime+"":"0"+secTime;
+        StringBuilder timeString = new StringBuilder();
+        // 시
+        if (secTime / 3600 > 9) {
+            timeString.append(secTime / 3600);
+        }
+        if (secTime / 3600 <= 9) {
+            timeString.append("0").append(secTime / 3600);
+        }
+        timeString.append(":");
 
-        return hour+":"+min+":"+sec;
+        // 분
+        secTime %= 3600;
+        if (secTime / 60 > 9) {
+            timeString.append(secTime / 60);
+        }
+        if (secTime / 60 <= 9) {
+            timeString.append("0").append(secTime / 60);
+        }
+        timeString.append(":");
+
+        // 초
+        secTime %= 60;
+        if (secTime > 9) {
+            timeString.append(secTime);
+        }
+        if (secTime <= 9) {
+            timeString.append("0").append(secTime);
+        }
+
+        return timeString.toString();
     }
 }
