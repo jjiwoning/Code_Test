@@ -6,42 +6,47 @@ import java.util.*;
  * 프로그래머스 - 카카오 메뉴 리뉴얼
  */
 public class Solution {
-    static Map<String, Integer> map;
 
-    public String[] solution(String[] orders, int[] course) {
-        List<String> answerList = new ArrayList<>();
+    private Map<String, Integer> map;
+
+    public String[] solution(String[] orders, int[] courses) {
+
+        List<String> answers = new ArrayList<>();
 
         for (int i = 0; i < orders.length; i++) {
             orders[i] = sortString(orders[i]);
         }
 
-        for (int i : course) {
+        for (int course : courses) {
             map = new HashMap<>();
             for (String order : orders) {
-                dfs("", order, i);
+                dfs("", order, course);
             }
 
-            List<Integer> countList = new ArrayList<>(map.values());
+            List<Integer> counts = new ArrayList<>(map.values());
 
             if (map.isEmpty()) {
                 continue;
             }
 
-            int findMax = Collections.max(countList);
+            Integer findMax = counts.stream()
+                .max(Comparator.comparingInt(o -> o))
+                .orElseThrow();
 
             if (findMax > 1) {
                 for (String key : map.keySet()) {
-                    if (map.get(key) == findMax) {
-                        answerList.add(key);
+                    if (Objects.equals(map.get(key), findMax)) {
+                        answers.add(key);
                     }
                 }
             }
         }
 
-        Collections.sort(answerList);
-        String[] answer = new String[answerList.size()];
+        answers.sort(String::compareTo);
+        String[] answer = new String[answers.size()];
+
         for (int i = 0; i < answer.length; i++) {
-            answer[i] = answerList.get(i);
+            answer[i] = answers.get(i);
         }
 
         return answer;
